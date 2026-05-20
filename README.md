@@ -56,23 +56,32 @@ $dbname = 'KismecBookingSystem';
 ```
 
 ### 3. Initialize the Database
-Start your XAMPP Control Panel and ensure **Apache** and **MySQL** are running. Open your browser and navigate to:
+Start your XAMPP Control Panel and ensure **Apache** and **MySQL** are running. You can set up the database using either of the following two methods:
+
+#### Method A: Automatic Seeding Script (Fastest)
+Open your browser and navigate to:
 ```http
 http://localhost/KismecBookingSystem/setup.php
 ```
-This automated seeding script will:
-* Verify MySQL connection.
-* Generate the `KismecBookingSystem` database structure.
-* Create core relational tables: `users`, `resources`, and `bookings`.
-* Seed default login credentials.
+This script will automatically connect to your MySQL server, create the `KismecBookingSystem` database, generate all tables, and seed the default accounts and rooms.
+
+#### Method B: Manual SQL Database Import
+If you prefer to manually import the database structure and seeds:
+1. Open **phpMyAdmin** (`http://localhost/phpmyadmin`) or your favorite MySQL client.
+2. Go to the **Import** tab.
+3. Click **Choose File** and select the [BookingSystem.sql](file:///c:/xampp/htdocs/KismecBookingSystem/BookingSystem.sql) file from the project root.
+4. Click **Import** (or **Go**).
+*(Alternatively, from your terminal/command line, run: `mysql -u root -p < BookingSystem.sql`)*
+
+---
 
 ### 4. Default Seed Accounts
-You can log in to the application at `http://localhost/KismecBookingSystem/login.php` using the seeded accounts:
+Once the database is initialized, log in to the application at `http://localhost/KismecBookingSystem/login.php` using the seeded accounts:
 
 | Role | Username | Password | Full Name |
 | :--- | :--- | :--- | :--- |
-| **Administrator** | `admin` | `admin123` | Administrator |
-| **Standard User** | `user` | `user123` | John Doe |
+| **Administrator** | `admin` | `admin123` | System Administrator |
+| **Standard User** | `staff` | `staff123` | Kismec Staff Member |
 
 ---
 
@@ -80,6 +89,7 @@ You can log in to the application at `http://localhost/KismecBookingSystem/login
 
 ```
 c:\xampp\htdocs\KismecBookingSystem
+├── BookingSystem.sql     # Database schema and seed import script
 ├── index.php             # Core Booking Calendar View
 ├── login.php             # Modern Glassmorphic Login Screen
 ├── logout.php            # Active Session Terminating Handler
